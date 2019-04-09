@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://unpkg.com/vuex"></script>
+        <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        <div id="app" class="wrapper">
+                <div class="l-container-4">
+                        <h1 class="u-text-center">Витрина
+                        </h1>
+                    
+                        <div class="courses u-mt-30">
+                            <form class="courses-form form" id="filterform" role="form">
+                                <div>
+                                    <select id="subj" v-model="subj" name="subj" >
+                                        <option value="">Все предметы</option>
+                                        <option v-for="subj in subjs">{{subj}}</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <select id="genre" v-model="genre" name="genre" >
+                                        <option value="">Все жанры</option>
+                                            <option v-for="genre in genres">{{genre}}</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <select id="grade" v-model.number="grade" name="grade" >
+                                        <option value="">Все классы</option>
+                                            <option v-for="grade in grades">{{grade}}</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <input v-model.trim="searchText" class="borderFind" type="text" placeholder="Поиск" id="search" name="search">
+                                    <button class="courses-form-search-btn" type="button" title="Найти" @click=";"></button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="courses u-mt-30">
+                            <form class="courses-form form">
+                                <div>
+                                    <select v-model="priceSelector">
+                                        <option value="price">Цена в рублях</option>
+                                        <option value="priceBonus">Цена в бонусах</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        <h1 class="u-text-center" id="InfoH1" style="display:none"></h1>
+                        <ul class="courses-list" id="courseslist">
+                                <li v-for="item in filteredItems" class="courses-sci">
+                                    <div class="sci-figure">
+                                            <img :src="'https://www.imumk.ru/svc/coursecover/'+item.courseId" alt="Демо-версия">
+                                    </div>
+                                    <div class="sci-info">
+                                        <p class="sci-title">{{item.subject}}</p>
+                                        <p class="sci-grade">{{classLabel(item.grade)}}</p>
+                                        <p class="sci-genre">{{item.genre}}</p>
+                                        
+                                        
+                                        <p class="sci-meta"><a href="#">Подробнее</a></p>
+                                        <p class="sci-controls">
+                                        <a href="#" onclick="" class="pure-button pure-button-primary btn-fluid">{{price(item)}}</a>
+                                            
+                                        </p>
+                                       
+                                    </div>
+                                </li>
+                            
+                        </ul>
+                    </div>
+        </div>
+        <script src="js/index.js">
+        </script>
+    </body>
+</html>
