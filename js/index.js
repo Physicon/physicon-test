@@ -79,7 +79,7 @@ var app = new Vue({
     },
     beforeMount: function(){
         let vm = this;
-        axios.post('http://krapipl.imumk.ru:8082/api/mobilev1/update', {data: ''})
+        axios.post('https://cors-anywhere.herokuapp.com/http://krapipl.imumk.ru:8082/api/mobilev1/update', {data: ''})
         .then(function(response){
             if (response.data.result == 'Ok') {
                 vm.items = response.data.items
